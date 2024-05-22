@@ -1,0 +1,366 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #a4907c;
+  background-color: #fff;
+  color: #3B1101;
+  font-family: "Protest Strike", sans-serif;
+}
+
+
+nav {
+  top: 0;
+  background-color: #F1DEC9;
+  display: flex;
+  height: 100px;
+  align-items: center;
+  padding: 20px;
+}
+
+nav img {
+  height: 70px;
+  margin-right: auto;
+}
+
+nav a {
+  color: #3B1101;
+  text-decoration: none;
+  margin-right: 25px;
+  font-size: 1.3rem;
+}
+
+nav svg {
+  width: 40px;
+}
+
+#count {
+  background-color: #3B1101;
+  color: #FFF;
+  border-radius: 50%;
+  padding: 5px 10px;
+  margin-left: -33px;
+  margin-top: -25px;
+}
+
+.search {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search input {
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.search svg {
+  width: 40px;
+  margin: 17px;
+  cursor: pointer;
+}
+
+.filter {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  padding: 20px 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .filter {
+    grid-template-columns: repeat(9, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .filter {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+
+.filter button {
+  padding: 10px 5px;
+  margin: 10px;
+  text-align: center;
+  align-items: center;
+  color: #3B1101;
+  border-radius: 15px;
+  background-color: #C8B6A6;
+  font-weight: bold;
+  font-size: 0.7rem;
+  cursor: pointer;
+  border: 2px solid #3B1101;
+}
+
+.filter .active {
+  background-color: #3B1101;
+  color: #C8B6A6;
+  border: 2px solid #C8B6A6;
+}
+
+main {
+  padding: 10px;
+  margin: auto;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  width: 250px;
+  background: linear-gradient(#C8B6A6, #c8b6a65e);
+  border-radius: 10px;
+  margin: 30px 20px;
+  padding: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  padding: 15px 0px;
+  text-align: center;
+}
+
+.card img {
+  border-radius: 15px;
+}
+
+.card p {
+  display: flex;
+  justify-content: center;
+}
+
+.card p .price {
+  margin-left: auto;
+  text-align: right;
+}
+
+.card button {
+  margin-top: 10px;
+  padding: 10px;
+  width: 70%;
+  background-color: #3B1101;
+  border-radius: 20px;
+  color: #C8B6A6;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.card button:hover {
+  background-color: hsl(17, 97%, 7%);
+}
+
+.card button:active {
+  box-shadow: inset 0 0 10px black;
+}
+
+.btn-container{
+  margin: 50px;
+}
+
+.card div {
+  min-width: 175px;
+  width: 80%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.card div span svg{
+  width: 25px;
+  /* margin: 9px 30px; */
+}
+
+main button {
+  padding: 20px;
+  width: 250px;
+  color: #3B1101;
+  border-radius: 15px;
+  background-color: #C8B6A6;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #3B1101;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+
+@keyframes example {
+  from {top:-100px;opacity: 0;}
+  to {top:0px;opacity:1;}
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 11;
+}
+
+
+.modal:target {
+  display: table;
+  position: absolute;
+}
+
+
+.modal-dialog {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+.modal-dialog .modal-content {
+  margin: auto;
+  position: relative;
+  padding: 0;
+  outline: 0;
+  border: 1px #777 solid;
+  text-align: justify;
+  width: 80%;
+  max-width: 65vw;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: example;
+  animation-duration: 0.5s;
+}
+
+
+.closebtn {
+  text-decoration: none;
+  float: right;
+  font-size: 50px;
+  font-weight: bold;
+  color: #3B1101;
+}
+
+.closebtn:hover,
+.closebtn:focus {
+  color: #616161;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container {
+  padding: 16px;
+  background-color: white;
+  color: #3B1101;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.container img {
+  border-radius: 15px;
+  height: 500px;
+  padding: 10px;
+}
+
+.container .coffee-data {
+  padding: 10px;
+  display: inline;
+}
+
+.coffee-data div{
+  font-size: 1.4rem;
+}
+
+.coffee-data div span {
+  float: right;
+}
+
+.coffee-data .sp-data {
+  padding: 20px;
+}
+
+.price-data {
+  display: flex;
+  justify-content: center;
+}
+
+.price-cnt {
+  float: right;
+}
+
+.price-container {
+  align-self: center;
+  padding: 20px;
+  font-size: 2rem;
+}
+
+.container button {
+  padding: 10px;
+  margin: 1px 15px;
+  width: 50px;
+  color: #3B1101;
+  border-radius: 15px;
+  background-color: #C8B6A6;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #3B1101;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+
+.container .selected {
+  padding: 10px;
+  margin: 1px 15px;
+  width: 50px;
+  color: #C8B6A6;
+  border-radius: 15px;
+  background-color: #3B1101;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #C8B6A6;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+
+header {
+  font-size: 25px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+header h2 {
+  padding: auto;
+  text-align: center;
+  margin: auto;
+  padding-left: 20px;
+  font-size: 2rem;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Shop</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@800&family=Kenia&family=Lato:wght@400;900&family=Protest+Strike&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@800&family=Kenia&family=Lato:wght@400;900&family=Protest+Revolution&family=Protest+Strike&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <img src="./logo.jpg" alt="logo" />
+      <a href="./index.html">Home</a>
+      <a href="./shop.html">Shop</a>
+
+      <div id="cart-icn">
+        <?xml version="1.0" ?><svg
+          viewBox="0 0 256 256"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect fill="none" height="256" width="256" />
+          <path
+            fill="#3B1101"
+            d="M96,216a16,16,0,1,1-16-16A16,16,0,0,1,96,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,184,200ZM228.1,67.2a8.1,8.1,0,0,0-6.4-3.2H48.3L40.2,35.6A16.1,16.1,0,0,0,24.8,24H8A8,8,0,0,0,8,40H24.8l9.8,34.1v.2L61,166.6A24.1,24.1,0,0,0,84.1,184h95.8A24.1,24.1,0,0,0,203,166.6l26.4-92.4A8,8,0,0,0,228.1,67.2Z"
+          />
+        </svg>
+      </div>
+      <div id="count">0</div>
+    </nav>
+
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <svg
+        id="search-btn"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="#555"
+      >
+        <g>
+          <path fill="none" d="M0 0h24v24H0z" />
+          <path
+            d="M11 2c4.968 0 9 4.032 9 9s-4.032 9-9 9-9-4.032-9-9 4.032-9 9-9zm0 16c3.867 0 7-3.133 7-7 0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7zm8.485.071l2.829 2.828-1.415 1.415-2.828-2.829 1.414-1.414z"
+          />
+        </g>
+      </svg>
+    </div>
+
+    <div class="filter" id="filterButtons">
+      <button class="active" data-type="all">All</button>
+    </div>
+
+    <main>
+      <div id="cards" class="cards"></div>
+      <div id="more-btn" class="btn-container">
+        <button>See more</button>
+      </div>
+    </main>
+
+    <aside id="aside" class="hidden">
+      
+    </aside>
+
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>

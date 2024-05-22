@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Diagrams</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@800&family=Kenia&family=Lato:wght@400;900&family=Protest+Strike&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@800&family=Kenia&family=Lato:wght@400;900&family=Protest+Revolution&family=Protest+Strike&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #fff;
+
+        color: #3b1101;
+        font-family: "Protest Strike", sans-serif;
+      }
+
+      nav {
+        top: 0;
+        background-color: #f1dec9;
+        display: flex;
+        height: 100px;
+        align-items: center;
+        padding: 20px;
+        margin-bottom: 25px;
+      }
+
+      nav img {
+        height: 70px;
+        margin-right: auto;
+      }
+
+      nav a {
+        color: #3b1101;
+        text-decoration: none;
+        margin-right: 25px;
+        font-size: 1.3rem;
+      }
+
+      nav svg {
+        width: 40px;
+      }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <img src="./logo.jpg" alt="logo" />
+        <a href="./index.html">Home</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./news.html">News</a>
+      </nav>
+    </header>
+    <div>
+      <canvas id="priceChart" width="400" height="200"></canvas>
+    </div>
+    <div>
+      <canvas id="typeChart" width="200" height="200"></canvas>
+    </div>
+    <div>
+      <canvas id="ratingChart" width="400" height="200"></canvas>
+    </div>
+
+    <script>
+      fetch("http://localhost:8080/all")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Data fetched:", data);
+          const coffeeData = data.data; // Extract the coffee data array
+          console.log("Coffee data:", coffeeData);
+
+          const colors = [
+            "blue",
+            "orange",
+            "green",
+            "purple",
+            "pink",
+            "yellow",
+          ];
+
+          const sizes = coffeeData
+            .map((coffee) => coffee.prices.map((item) => item.size))
+            .flat()
+            .filter((item, index, array) => array.indexOf(item) === index);
+          const datasets = coffeeData.map((coffee, index) => {
+            return {
+              label: coffee.name,
+              backgroundColor: colors[index % colors.length],
+              data: coffee.prices.map((item) => parseFloat(item.price)),
+            };
+          });
+
+          new Chart("priceChart", {
+            type: "bar",
+            data: {
+              labels: sizes,
+              datasets: datasets,
+            },
+            options: {
+              scales: { yAxes: [{ ticks: { beginAtZero: true } }] },
+            },
+          });
+
+          const types = coffeeData.map((coffee) => coffee.type);
+          const typeCounts = types.reduce((acc, curr) => {
+            acc[curr] = (acc[curr] || 0) + 1;
+            return acc;
+          }, {});
+
+          new Chart("typeChart", {
+            type: "pie",
+            data: {
+              labels: Object.keys(typeCounts),
+              datasets: [
+                {
+                  backgroundColor: colors.slice(
+                    0,
+                    Object.keys(typeCounts).length
+                  ),
+                  data: Object.values(typeCounts),
+                },
+              ],
+            },
+            options: { title: { display: true, text: "Coffee Types" } },
+          });
+
+          const coffeeNames = coffeeData.map((item) => item.name);
+          const averageRatings = coffeeData.map((item) => item.average_rating);
+
+          new Chart("ratingChart", {
+            type: "scatter",
+            data: {
+              datasets: [
+                {
+                  pointRadius: 8,
+                  pointBackgroundColor: "green",
+                  data: averageRatings.map((rating, index) => ({
+                    x: index,
+                    y: rating,
+                  })),
+                  label: "Average Ratings",
+                },
+              ],
+              labels: coffeeNames,
+            },
+            options: {
+              scales: {
+                xAxes: [
+                  {
+                    ticks: {
+                      min: -0.5,
+                      max: 1.5,
+                      callback: (value, index) => coffeeNames[index],
+                    },
+                  },
+                ],
+                yAxes: [{ ticks: { beginAtZero: true } }],
+              },
+            },
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    </script>
+  </body>
+</html>
